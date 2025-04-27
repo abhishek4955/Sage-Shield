@@ -1,0 +1,91 @@
+# Threshold Configuration
+thresholds:
+  requests_per_second: 100
+  bandwidth_mbps: 50
+  monitoring_window_seconds: 10
+  botnet_sources: 50
+  connection_timeout_seconds: 60
+  coordination_window_seconds: 5
+
+# Network Configuration
+network:
+  internal_networks:
+    - "10.0.0.0/8"
+    - "172.16.0.0/12"
+    - "192.168.0.0/16"
+  proxy_ports:
+    - 1080
+    - 3128
+    - 8080
+    - 8888
+    - 9999
+
+# VPN Providers
+vpn_ranges:
+  cloudflare:
+    - "103.21.244.0/22"
+    - "104.16.0.0/12"
+    - "108.162.192.0/18"
+    - "162.158.0.0/15"
+    - "172.64.0.0/13"
+  protonvpn:
+    - "131.0.72.0/22"
+    - "185.159.156.0/22"
+    - "185.159.157.0/24"
+    - "185.159.158.0/24"
+    - "185.159.159.0/24"
+
+# Risk Scoring
+risk_scores:
+  vpn_detection: 0.3
+  proxy_detection: 0.3
+  tor_detection: 0.4
+  high_request_rate: 0.4
+  high_bandwidth: 0.4
+  threat_intel_multiplier: 0.2
+
+# UI Configuration
+ui:
+  table:
+    max_height: 600
+    max_entries: 1000
+    refresh_interval: 1000
+    colors:
+      suspicious:
+        text:
+          light: "text-red-600"
+          dark: "text-red-400"
+        background:
+          light: "bg-red-50/50"
+          dark: "bg-red-900/10"
+      normal:
+        text:
+          light: "text-green-600"
+          dark: "text-green-400"
+      scrollbar:
+        thumb:
+          default: "primary/20"
+          hover: "primary/40"
+          dark:
+            default: "primary/40"
+            hover: "primary/60"
+
+# Backend Configuration
+backend:
+  host: "localhost"
+  port: 5000
+  api:
+    traffic: "/api/traffic"
+    blocked_ips: "/api/blocked-ips"
+    active_connections: "/api/active-connections"
+    block_ip: "/api/block-ip"
+    unblock_ip: "/api/unblock-ip"
+
+# Sample Data Configuration
+sample_data:
+  enabled: false  # Disable sample data generation
+  ip_range_start: "192.168.1.1"
+  ip_range_end: "192.168.1.5"
+  bandwidth_min: 0.1
+  bandwidth_max: 2.0
+  default_user_agent: "Mozilla/5.0" 
